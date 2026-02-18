@@ -1,0 +1,35 @@
+{
+  "php.validate.executablePath": "d:\\xampp\\php\\php.exe",
+  "php.debug.executablePath": "",
+  "workbench.colorTheme": "Dracula Theme",
+  "workbench.iconTheme": "material-icon-theme",
+  "explorer.confirmDelete": true,
+  "editor.fontFamily": "JetBrains Mono",
+  "editor.fontSize": 14,
+  //"editor.lineHeight": 1.5,
+  "editor.rulers": [80, 120],
+  "editor.fontLigatures": true,
+  "editor.renderLineHighlight": "gutter",
+  "editor.semanticHighlighting.enabled": true,
+  "explorer.fileNesting.enabled": true,
+  "explorer.fileNesting.patterns": {
+    "package.json": "package-lock.json, yarn.lock, pnpm-lock.yaml, bun.lockb, bun.lock, tsconfig*, vite*, biome*, prisma*",
+    "env.local": ".env*",
+    "env": ".env*"
+  },
+  "breadcrumbs.enabled": true,
+  "terminal.integrated.fontSize": 14,
+  "explorer.compactFolders": false,
+  "editor.formatOnSave": true,
+  "editor.defaultFormatter": "biomejs.biome",
+  "editor.codeActionsOnSave": {
+    "source.fixAll.biome": "explicit",
+    "source.organizeImports.biome": "explicit"
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "biomejs.biome"
+  },
+  "[javascript]": {
+    "editor.defaultFormatter": "biomejs.biome"
+  }
+}
