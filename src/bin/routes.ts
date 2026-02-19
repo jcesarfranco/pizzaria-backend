@@ -3,6 +3,9 @@ import multer from 'multer';
 import uploadConfig from '../config/multer';
 import { CreateCategoryController } from '../controllers/category/CreateCategoryController';
 import { ListCategoryController } from '../controllers/category/ListCategoryController';
+import { AddItemController } from '../controllers/order/AddItemController';
+import { CreateOrderController } from '../controllers/order/CreateOrderController';
+import { ListOrdersController } from '../controllers/order/ListOrdersController';
 import { CreateProductController } from '../controllers/product/CreateProductController';
 import { DeleteProductController } from '../controllers/product/DeleteProductController';
 import { ListProductByCategoryController } from '../controllers/product/ListProductByCategoryController';
@@ -14,6 +17,7 @@ import { isAdmin } from '../middlewares/isAdmin';
 import { isAuthenticated } from '../middlewares/isAuthenticated';
 import { validateSchema } from '../middlewares/validateSchema';
 import { createCategorySchema } from '../schemas/categorySchema';
+import { addItemSchema, createOrderSchema } from '../schemas/orderSchema';
 import {
   createProductSchema,
   listProductByCategorySchema,
@@ -81,6 +85,22 @@ router.get(
   isAuthenticated,
   validateSchema(listProductByCategorySchema),
   new ListProductByCategoryController().handle,
+);
+
+router.post(
+  '/order',
+  isAuthenticated,
+  validateSchema(createOrderSchema),
+  new CreateOrderController().handle,
+);
+
+router.get('/orders', isAuthenticated, new ListOrdersController().handle);
+
+router.post(
+  '/order/add',
+  isAuthenticated,
+  validateSchema(addItemSchema),
+  new AddItemController().handle,
 );
 
 export { router };
