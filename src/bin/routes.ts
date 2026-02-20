@@ -5,7 +5,9 @@ import { CreateCategoryController } from '../controllers/category/CreateCategory
 import { ListCategoryController } from '../controllers/category/ListCategoryController';
 import { AddItemController } from '../controllers/order/AddItemController';
 import { CreateOrderController } from '../controllers/order/CreateOrderController';
+import { DetailOrderController } from '../controllers/order/DetailOrderController';
 import { ListOrdersController } from '../controllers/order/ListOrdersController';
+import { RemoveItemController } from '../controllers/order/RemoveItemController';
 import { CreateProductController } from '../controllers/product/CreateProductController';
 import { DeleteProductController } from '../controllers/product/DeleteProductController';
 import { ListProductByCategoryController } from '../controllers/product/ListProductByCategoryController';
@@ -17,7 +19,12 @@ import { isAdmin } from '../middlewares/isAdmin';
 import { isAuthenticated } from '../middlewares/isAuthenticated';
 import { validateSchema } from '../middlewares/validateSchema';
 import { createCategorySchema } from '../schemas/categorySchema';
-import { addItemSchema, createOrderSchema } from '../schemas/orderSchema';
+import {
+  addItemSchema,
+  createOrderSchema,
+  detailOrderSchema,
+  removeItemSchema,
+} from '../schemas/orderSchema';
 import {
   createProductSchema,
   listProductByCategorySchema,
@@ -101,6 +108,22 @@ router.post(
   isAuthenticated,
   validateSchema(addItemSchema),
   new AddItemController().handle,
+);
+
+// Remover item da order
+router.delete(
+  '/order/remove',
+  isAuthenticated,
+  validateSchema(removeItemSchema),
+  new RemoveItemController().handle,
+);
+
+// Buscar detalhes de uma order
+router.get(
+  '/order/detail',
+  isAuthenticated,
+  validateSchema(detailOrderSchema),
+  new DetailOrderController().handle,
 );
 
 export { router };

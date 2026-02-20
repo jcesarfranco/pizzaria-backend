@@ -1,5 +1,11 @@
+# Ignore node modules
 node_modules
+
 # Keep environment variables out of version control
 .env
 
+# Ignore generated Prisma client code
 /src/generated/prisma
+
+# keep IDE settings out of version control
+.vscode
