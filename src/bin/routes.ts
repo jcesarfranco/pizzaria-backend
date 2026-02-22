@@ -5,9 +5,12 @@ import { CreateCategoryController } from '../controllers/category/CreateCategory
 import { ListCategoryController } from '../controllers/category/ListCategoryController';
 import { AddItemController } from '../controllers/order/AddItemController';
 import { CreateOrderController } from '../controllers/order/CreateOrderController';
+import { DeleteOrderController } from '../controllers/order/DeleteOrderController';
 import { DetailOrderController } from '../controllers/order/DetailOrderController';
+import { FinishOrderController } from '../controllers/order/FinishOrderController';
 import { ListOrdersController } from '../controllers/order/ListOrdersController';
 import { RemoveItemController } from '../controllers/order/RemoveItemController';
+import { SendOrderController } from '../controllers/order/SendOrderController';
 import { CreateProductController } from '../controllers/product/CreateProductController';
 import { DeleteProductController } from '../controllers/product/DeleteProductController';
 import { ListProductByCategoryController } from '../controllers/product/ListProductByCategoryController';
@@ -22,8 +25,11 @@ import { createCategorySchema } from '../schemas/categorySchema';
 import {
   addItemSchema,
   createOrderSchema,
+  deleteOrderSchema,
   detailOrderSchema,
+  finishOrderSchema,
   removeItemSchema,
+  sendOrderSchema,
 } from '../schemas/orderSchema';
 import {
   createProductSchema,
@@ -124,6 +130,27 @@ router.get(
   isAuthenticated,
   validateSchema(detailOrderSchema),
   new DetailOrderController().handle,
+);
+
+router.put(
+  '/order/send',
+  isAuthenticated,
+  validateSchema(sendOrderSchema),
+  new SendOrderController().handle,
+);
+
+router.put(
+  '/order/finish',
+  isAuthenticated,
+  validateSchema(finishOrderSchema),
+  new FinishOrderController().handle,
+);
+
+router.delete(
+  '/order',
+  isAuthenticated,
+  validateSchema(deleteOrderSchema),
+  new DeleteOrderController().handle,
 );
 
 export { router };
