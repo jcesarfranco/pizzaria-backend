@@ -21,6 +21,7 @@ import { DetailUserController } from '../controllers/user/DetailUserController';
 import { isAdmin } from '../middlewares/isAdmin';
 import { isAuthenticated } from '../middlewares/isAuthenticated';
 import { validateSchema } from '../middlewares/validateSchema';
+/* import { route as categoryRoute } from '../routes/category/category.routes'; */
 import { createCategorySchema } from '../schemas/categorySchema';
 import {
   addItemSchema,
@@ -69,6 +70,8 @@ router.post(
 );
 
 router.get('/category', isAuthenticated, new ListCategoryController().handle);
+
+// router.use('/api/category', categoryRoute);
 
 router.post(
   '/product',
